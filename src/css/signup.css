@@ -1,0 +1,81 @@
+/* Container styling */
+.container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #3fffdfc9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styling */
+h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Label styling */
+label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+}
+input[type="name"] {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #3f323286;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+/* Input field styling */
+input[type="email"],
+input[type="password"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #3f323286;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+/* Input focus styling */
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Button styling */
+button[type="submit"] {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 30px;
+}
+
+/* Button hover styling */
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Disabled button styling */
+button[type="submit"]:disabled {
+    background-color: #007bff90;
+    cursor: not-allowed;
+}
+
+/* Focus styling for button */
+button:focus {
+    outline: none;
+}

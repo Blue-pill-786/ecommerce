@@ -1,0 +1,72 @@
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #3fffdfc9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin: 20px;
+    text-align: center;
+}
+.form{
+    margin: auto;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+select {
+    padding: 10px;
+    margin: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+input[type="tel"] {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin: 15px;
+  }
+
+button[type="submit"] {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 300px;
+   border-radius: 50px;
+   margin: auto;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+    
+   
+}
+
+/* Media Query for Mobile Devices */
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 90%; /* Adjust container width for smaller screens */
+    }
+
+    button[type="submit"] {
+        width: 80%;/* Make the button full width on smaller screens */
+        border-radius: 5px; /* Reset border-radius */
+    }
+}
