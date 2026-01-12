@@ -1,159 +1,92 @@
-/* =========================
-   RESET
-========================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ===== NAVBAR CLEANUP ===== */
+
+.navbox {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  gap: 12px;
+  background: #afc2d3;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont,
-               "SF Pro Text", "Segoe UI",
-               Roboto, sans-serif;
-  font-size: 15px;
-  line-height: 1.45;
-  background: #f7f7f7;
-  color: #111;
+/* LEFT SIDE */
+.leftside {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  cursor: pointer;
 }
 
-/* =========================
-   APP SHELL
-========================= */
-.app-shell {
-  max-width: 480px;
-  margin: 0 auto;
-  min-height: 100vh;
-  background: #fff;
-
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.02),
-    0 10px 30px rgba(0,0,0,0.06);
+.logo {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
 }
 
-/* =========================
-   FIXED TOP HEADER
-========================= */
-.app-header {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 480px;
-
-  padding: 14px 16px;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: saturate(180%) blur(10px);
-
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  z-index: 1000;
-}
-
-.app-header h1 {
-  font-size: 17px;
+.nav-title {
+  font-size: 16px;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.app-header p {
-  font-size: 13px;
-  color: #666;
-  margin-top: 4px;
-}
-
-/* =========================
-   MAIN CONTENT
-========================= */
-.app-content {
-  padding: 16px;
-  padding-top: 84px;     /* space for fixed header */
-  padding-bottom: 72px;  /* space for bottom nav */
-}
-
-/* =========================
-   BOTTOM NAVIGATION
-========================= */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 100%;
-  max-width: 480px;
-  height: calc(56px + env(safe-area-inset-bottom));
-  padding-bottom: env(safe-area-inset-bottom);
-
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(10px);
-
-  border-top: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
-
-  z-index: 1000;
-}
-
-.bottom-nav a {
-  min-width: 44px;
-  min-height: 44px;
+/* RIGHT SIDE */
+.rightside {
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  text-decoration: none;
-  font-size: 13px;
-  color: #333;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
-/* =========================
-   PRODUCT & CART CARDS
-========================= */
-.product-card,
-.cart-card {
-  margin-bottom: 16px;
-  border-radius: 16px;
-  background: #fff;
-
-  box-shadow:
-    0 1px 2px rgba(0,0,0,0.04),
-    0 6px 16px rgba(0,0,0,0.06);
+/* TEXT */
+.name {
+  font-size: 12px;
+  color: #555;
+  white-space: nowrap;
 }
 
-/* =========================
-   CART ICON + BADGE
-========================= */
+/* BUTTONS */
+.logout-btn,
+.login-btn {
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: #007aff;
+  padding: 4px 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* CART */
 .cart {
   position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  cursor: pointer;
 }
 
+.cart-icon {
+  width: 100%;
+  height: 100%;
+}
+
+/* BADGE */
 .cartCount {
   position: absolute;
   top: -6px;
-  right: -8px;
-
+  right: -6px;
   min-width: 18px;
   height: 18px;
-  padding: 0 5px;
-
   background: #ff3b30;
   color: #fff;
   font-size: 11px;
   font-weight: 600;
-
   border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  animation: cartPop 0.25s cubic-bezier(.34,1.56,.64,1);
-}
-
-@keyframes cartPop {
-  0% { transform: scale(0.6); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
 }

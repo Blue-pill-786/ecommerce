@@ -1,23 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { Navbar } from "../Components/Navbar";
 
 export const MobileLayout = ({ children }) => {
   const [scrolled, setScrolled] = useState(false);
+  const contentRef = useRef(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 4);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const el = contentRef.current;
+    if (!el) return;
+
+    const onScroll = () => {
+      setScrolled(el.scrollTop > 4);
+    };
+
+    el.addEventListener("scroll", onScroll);
+    return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <div className="app-shell">
-      <header className={`app-header fixed ${scrolled ? "scrolled" : ""}`}>
-        <h1>Kashmir Market</h1>
-        <p>Srinagar & Nearby</p>
+      <header className={`app-header ${scrolled ? "scrolled" : ""}`}>
+        <Navbar />
       </header>
 
-      <main className="app-content">{children}</main>
+      <main ref={contentRef} className="app-content">
+        {children}
+      </main>
 
       <nav className="bottom-nav">
         <Link to="/">Home</Link>
