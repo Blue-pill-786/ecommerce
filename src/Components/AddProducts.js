@@ -1,55 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../css/addproducts.css';
 import { collection, addDoc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../Config/Config';
-import { uploadBytes, ref, getDownloadURL } from 'firebase/storage';
+import { toast } from 'react-toastify';
+import '../css/addproducts.css';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../reducers/userReducers';
+
 
 export const AddProducts = () => {
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [productImage, setProductImage] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  const user = useSelector(selectUser);
   const navigate = useNavigate();
+
+  // Safety net (ProtectedRoute should already block)
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (submitting) return;
 
-    try {
-      const filename = productImage.name;
-      const mountainRef = ref(storage, filename);
-
-      // Upload file to Cloud Storage
-      const uploadTask = uploadBytes(mountainRef, productImage);
-      
-      // Wait for the upload to complete
-      uploadTask.then(async (snapshot) => {
-        console.log('Uploaded a file!');
-        
-        // Get the download URL of the uploaded file
-        const imageUrl = await getDownloadURL(snapshot.ref);
-        
-        // Add product data to Firestore
-        await addDoc(collection(db, 'products'), {
-          name: productName,
-          price: productPrice,
-          image: imageUrl
-        });
-
-        alert('Product added successfully! 👍');
-        navigate('/');
-      });
-    } catch (error) {
-      console.error('Error adding product: ', error);
-      alert(`Failed to add product: ${error.message}`);
+    if (!productImage) {
+      toast.error('Please select an image');
+      return;
     }
 
-    setProductName('');
-    setProductPrice('');
-    setProductImage(null);
-  };
+    setSubmitting(true);
+   
 
-  const handleImageChange = (e) => {
-    setProductImage(e.target.files[0]);
+
+    try {
+      const imageRef = ref(
+        storage,
+        `products/${Date.now()}-${productImage.name}`
+      );
+
+      const snapshot = await uploadBytes(imageRef, productImage);
+      const imageUrl = await getDownloadURL(snapshot.ref);
+
+      await addDoc(collection(db, 'products'), {
+        name: productName.trim(),
+        price: Number(productPrice),
+        image: imageUrl,
+        createdAt: new Date(),
+        createdBy: user.email,
+      });
+
+      toast.success('Product added successfully');
+      navigate('/');
+
+      setProductName('');
+      setProductPrice('');
+      setProductImage(null);
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to add product');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -59,25 +76,29 @@ export const AddProducts = () => {
         <input
           type="text"
           value={productName}
-          onChange={(e) => setProductName(e.target.value)}
+          onChange={e => setProductName(e.target.value)}
+          required
         />
-        <br />
+
         <label>Product Price</label>
         <input
           type="number"
           value={productPrice}
-          onChange={(e) => setProductPrice(e.target.value)}
+          onChange={e => setProductPrice(e.target.value)}
+          required
         />
-        <br />
+
         <label>Product Image</label>
         <input
           type="file"
-          id="file"
           accept="image/jpeg, image/png"
-          onChange={handleImageChange}
+          onChange={e => setProductImage(e.target.files[0])}
+          required
         />
-        <br />
-        <button type="submit">ADD</button>
+
+        <button type="submit" disabled={submitting}>
+          {submitting ? 'Adding…' : 'ADD PRODUCT'}
+        </button>
       </form>
     </div>
   );

@@ -1,14 +1,14 @@
 const initialState = {
-    user: {
-        user: JSON.parse(sessionStorage.getItem('user')) || null
-    },
-    cart: {
-        cartItems: [],
-        cartItemsCount: 0,
-        cartItemsTotal: 0,
-        totalPrice: 0
-    },
-    // Add other parts of the state as needed
+  user: {
+    user: JSON.parse(sessionStorage.getItem('user')) || null,
+  },
+  cart: {
+    cartItems: [],
+    totalPrice: 0,
+    totalQuantity: 0,
+    status: 'idle', // idle | loading | success | error
+    error: null,
+  },
 };
 
 export default initialState;

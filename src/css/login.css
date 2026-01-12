@@ -1,74 +1,77 @@
-/* Container styling */
+/* Auth container */
 .container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #3fffdfc9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 420px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #eafff7;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
-/* Heading styling */
-h2 {
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333;
+/* Heading */
+.container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
 }
 
-/* Form styling */
-form {
-    display: flex;
-    flex-direction: column;
+/* Form layout */
+.container form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-/* Label styling */
-label {
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #555;
+/* Labels */
+.container label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
 }
 
-/* Input field styling */
-input[type="email"],
-input[type="password"] {
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #3f323286;
-    border-radius: 5px;
-    transition: border-color 0.3s ease;
+/* Inputs */
+.container input[type="email"],
+.container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #3f323286;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
 }
 
-/* Input focus styling */
-input[type="email"]:focus,
-input[type="password"]:focus {
-    outline: none;
-    border-color: #007bff;
+.container input:focus {
+  outline: none;
+  border-color: #007bff;
 }
 
-/* Button styling */
-button[type="submit"] {
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* Submit button */
+.container button[type="submit"] {
+  padding: 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
 }
 
-/* Button hover styling */
-button[type="submit"]:hover {
-    background-color: #0056b3;
+.container button[type="submit"]:hover {
+  background-color: #0056b3;
 }
 
-/* Disabled button styling */
-button[type="submit"]:disabled {
-    background-color: #007bff90;
-    cursor: not-allowed;
+.container button[type="submit"]:disabled {
+  background-color: #007bff90;
+  cursor: not-allowed;
 }
 
-/* Focus styling for button */
-button:focus {
-    outline: none;
+/* Accessible focus */
+.container button[type="submit"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.4);
 }

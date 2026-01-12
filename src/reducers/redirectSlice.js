@@ -2,21 +2,28 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    path: null,
+  targetPath: null,
 };
 
 const redirectSlice = createSlice({
-    name: 'redirect',
-    initialState,
-    reducers: {
-        setRedirectPath: (state, action) => {
-            state.path = action.payload;
-        },
+  name: 'redirect',
+  initialState,
+  reducers: {
+    setRedirectPath: (state, action) => {
+      state.targetPath = action.payload;
     },
+    clearRedirectPath: (state) => {
+      state.targetPath = null;
+    },
+  },
 });
 
-export const { setRedirectPath } = redirectSlice.actions;
+export const {
+  setRedirectPath,
+  clearRedirectPath,
+} = redirectSlice.actions;
 
-export const selectRedirectPath = (state) => state.redirect.path;
+export const selectRedirectPath = (state) =>
+  state.redirect.targetPath;
 
 export default redirectSlice.reducer;

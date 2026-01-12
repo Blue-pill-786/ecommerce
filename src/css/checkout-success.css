@@ -1,0 +1,32 @@
+.success-screen {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-card {
+  text-align: center;
+  padding: 32px;
+}
+
+.success-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.success-card button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  border-radius: 14px;
+  border: none;
+  background: #25D366;
+  color: white;
+  font-weight: 600;
+}
+
+.success-card .secondary {
+  background: #f0f0f0;
+  color: #111;
+}

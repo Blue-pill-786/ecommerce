@@ -1,60 +1,79 @@
-import React, { Component } from 'react';
-import {  Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+
 import { Home } from './Components/Home';
 import { Signup } from './Components/Signup';
 import { Login } from './Components/Login';
 import { AddProducts } from './Components/AddProducts';
 import { Cashout } from './Components/Cashout';
 import { Cart } from './Components/Cart';
-import { NotFound } from './Components/NotFound'; // Create this component to handle unknown routes
+import { NotFound } from './Components/NotFound';
 import ProtectedRoute from './Components/ProtectedRoute';
 import { DeleteProduct } from './Components/deleteProducts';
 
+import { MobileLayout } from './layout/MobileLayout';
 
-export class App extends Component {
+const App = () => {
+  return (
+    <Routes>
 
-   
+      {/* BUYER ROUTES */}
+      <Route
+        path="/"
+        element={
+          <MobileLayout>
+            <Home />
+          </MobileLayout>
+        }
+      />
 
-    render() {
-        return (
-           
-      
+      <Route
+        path="/cart"
+        element={
+          <MobileLayout>
+            <Cart />
+          </MobileLayout>
+        }
+      />
 
-          
-                <Routes>
-                    {/* Home */}
-                    <Route exact path='/' element={<Home />} />
+      <Route
+        path="/cashout"
+        element={
+          <ProtectedRoute>
+            <MobileLayout>
+              <Cashout />
+            </MobileLayout>
+          </ProtectedRoute>
+        }
+      />
 
-                    {/* Signup */}
-                    <Route path='/signup' element={<Signup />} />
+      {/* AUTH ROUTES */}
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
 
-                    {/* Login */}
-                    <Route path='/login' element={<Login />} />
+      {/* ADMIN ROUTES */}
+      <Route
+        path="/addproducts"
+        element={
+          <ProtectedRoute>
+            <AddProducts />
+          </ProtectedRoute>
+        }
+      />
 
-                    {/* Cart products */}
-                    <Route path='/cartproducts' element={<Cart />} />
+      <Route
+        path="/delete"
+        element={
+          <ProtectedRoute>
+            <DeleteProduct />
+          </ProtectedRoute>
+        }
+      />
 
-                    {/* Add products */}
-                    <Route path='/addproducts' element={
-                        // <ProtectedRoute>  
-                             <AddProducts />
-                             //   </ProtectedRoute> 
-                            } />
+      {/* FALLBACK */}
+      <Route path="*" element={<NotFound />} />
 
-                    {/* Cashout */}
-                    <Route path='/cashout' element={
-                        <ProtectedRoute>
-                            <Cashout />
-                        </ProtectedRoute>
-                    } />
-                    <Route path='/delete' element={<DeleteProduct/>}/>
-                    {/* Fallback for incorrect routes */}
-                    <Route path='*' element={<NotFound />} />
-                </Routes>
-           
-           
-        );
-    }
-}
+    </Routes>
+  );
+};
 
 export default App;

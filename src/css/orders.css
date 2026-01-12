@@ -1,0 +1,10 @@
+.orders {
+  padding: 16px;
+}
+
+.order-card {
+  background: #fff;
+  padding: 14px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+}
